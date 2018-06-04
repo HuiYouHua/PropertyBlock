@@ -2,6 +2,23 @@
 使用runtime回调的方式进行正向传值，适用于在两个界面过度中间进行相关逻辑的处理
 
 ``` 
+//
+//  UIViewController+Transition.m
+//  PropertyBlock
+//
+//  Created by 华惠友 on 2018/6/4.
+//  Copyright © 2018年 华惠友. All rights reserved.
+//
+
+#import "UIViewController+Transition.h"
+
+#import "UIViewController+Transition.h"
+#import <objc/runtime.h>
+
+static NSString *const transitionBlockKey = @"transitionBlockKey";
+
+@implementation UIViewController (Transition)
+
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -69,4 +86,6 @@
 - (TransitionBlock)transitionBlock {
     return objc_getAssociatedObject(self, &transitionBlockKey);
 }
+
+@end
 ```
